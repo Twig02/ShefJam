@@ -11,9 +11,6 @@ public class ScreenSizer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-            gameObject.transform.parent.GetComponent<RectTransform>().sizeDelta.x,
-            gameObject.transform.parent.GetComponent<RectTransform>().sizeDelta.y
-            );
+
     }
 }

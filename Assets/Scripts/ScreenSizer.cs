@@ -2,17 +2,20 @@ using UnityEngine;
 
 public class ScreenSizer : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private RectTransform myRect;
+    private RectTransform parentRect;
+
+    void Awake()
     {
-        
+        myRect = GetComponent<RectTransform>();
+        parentRect = transform.parent.GetComponent<RectTransform>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
-            gameObject.transform.parent.GetComponent<RectTransform>().sizeDelta.x
-            );
+        if (parentRect != null)
+        {
+            myRect.sizeDelta = parentRect.sizeDelta;
+        }
     }
 }

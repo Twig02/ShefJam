@@ -12,5 +12,7 @@ public class ScreenSizer : MonoBehaviour
     void Update()
     {
         gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(
+            gameObject.transform.parent.GetComponent<RectTransform>().sizeDelta.x
+            );
     }
 }

@@ -1,15 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Swiper : Swipee
-{
-    public string[] Preferences;
+public class Swiper : Swipee {
     public struct Preference 
     {
         public string Category;
         public string Value;
         public override string ToString() => $"{Category}: {Value}";
     }
+
+    public Preference[] Preferences;
 
     private static readonly double[,] jobsArray = {
 {1, 0.9, 1.1, 0.7, 0.8, 1, 0.7, 1.1, 0.6, 1.2, 1.3, 0.9, 1.4, 1, 1.2, 0.5, 1, 0.8, 1.1, 0.7, 0.8, 0.9, 1.1, 0.7, 1.3, 0.9, 0.7, 1, 1.1, 0.9}, 

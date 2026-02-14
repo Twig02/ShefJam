@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class TickScript : MonoBehaviour
+public class init : MonoBehaviour
 {
-    public GameObject player;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

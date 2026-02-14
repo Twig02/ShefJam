@@ -22,7 +22,7 @@ public class Swipee
     protected static string[] datingGoals = { "Shags", "Confused.com", "Gets aftercare", "Wifey", "Greedy" };
 
     public Swipee(System.Random rnd) {
-        string[] allNames = File.ReadAllLines("names.txt");
+        string[] allNames = File.ReadAllLines("assets/misc/Names.txt");
         Name = allNames[rnd.Next(allNames.Length)];
         
         Looks = new string[] { 
@@ -41,7 +41,7 @@ public class Swipee
         Job = jobs[rnd.Next(jobs.Length)];
         DatingIntentions = datingGoals[rnd.Next(datingGoals.Length)];
         RicePurityScore = rnd.Next(101);
-        string[] allDescriptions = File.ReadAllLines("descriptions.txt");
+        string[] allDescriptions = File.ReadAllLines("assets/misc/Descriptions.txt");
         Description = allDescriptions[rnd.Next(allDescriptions.Length)];
     }
 }

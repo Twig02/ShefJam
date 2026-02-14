@@ -2,17 +2,11 @@ using UnityEngine;
 
 public class TickScript : MonoBehaviour
 {
-    public GameObject player;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public GameObject contentObject;
+    public void onButtonClick()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        System.Random rmd = new System.Random();
+        Swipee currentSwipee = new Swipee(rmd);
+        contentObject.GetComponent<Init>().UpdateSwipeScreen(currentSwipee);
     }
 }

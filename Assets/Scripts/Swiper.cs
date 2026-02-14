@@ -4,6 +4,12 @@ using System.Collections.Generic;
 public class Swiper : Swipee
 {
     public string[] Preferences;
+    public struct Preference 
+    {
+        public string Category;
+        public string Value;
+        public override string ToString() => $"{Category}: {Value}";
+    }
 
     private static readonly double[,] jobsArray = {
 {1, 0.9, 1.1, 0.7, 0.8, 1, 0.7, 1.1, 0.6, 1.2, 1.3, 0.9, 1.4, 1, 1.2, 0.5, 1, 0.8, 1.1, 0.7, 0.8, 0.9, 1.1, 0.7, 1.3, 0.9, 0.7, 1, 1.1, 0.9}, 
@@ -89,24 +95,25 @@ public class Swiper : Swipee
 
 
     public Swiper(System.Random rnd) : base(rnd) {
-        this.Name = "You";
-        string[] allOptions = new string[] {
-            hairLength[rnd.Next(hairLength.Length)], 
-            hairColour[rnd.Next(hairColour.Length)],
-            eyeColour[rnd.Next(eyeColour.Length)],
-            glasses[rnd.Next(glasses.Length)] 
+        this.Name = "You"; 
+
+        Preference[] allOptions = new Preference[] {
+            new Preference { Category = "Hair Length", Value = hairLength[rnd.Next(hairLength.Length)] },
+            new Preference { Category = "Hair Colour", Value = hairColour[rnd.Next(hairColour.Length)] },
+            new Preference { Category = "Eye Colour",  Value = eyeColour[rnd.Next(eyeColour.Length)] },
+            new Preference { Category = "Glasses",     Value = glasses[rnd.Next(glasses.Length)] }
         };
 
-        int firstIndex = rnd.Next(4);
+        int firstIndex = rnd.Next(allOptions.Length);
         int secondIndex;
 
         do {
-            secondIndex = rnd.Next(4);
+            secondIndex = rnd.Next(allOptions.Length);
         } while (secondIndex == firstIndex);
 
-        this.Preferences = new string[] {
+        this.Preferences = new Preference[] {
             allOptions[firstIndex],
-            allOptions[secondIndex]
-        };
+        allOptions[secondIndex]
+        }; 
     }
 }

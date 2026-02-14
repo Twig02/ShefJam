@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 public class Swipee
@@ -20,7 +21,15 @@ public class Swipee
     protected static string[] jobs = { "Diamond Plug Fixer", "Unemployed", "Pint pourer", "Maccies slave", "Dictator", "Failing musician", "Finance bro", "Uber Eats", "Stripper", "Cereal killer", "Bossman at kebab shop", "Celebrity (on the list)", "Eduroam support", "Politician", "Toilet cleaner", "Lockheed Martin engineer", "Denver Airport baggage handler", "Emo barista", "Uni lecturer", "Student", "Alcoholic", "Evil scientist", "Bouncer", "Drug dealer", "Endcliffe maintenance", "Vietnam veteran", "White van driver", "Fortune teller", "Benefit scrounger", "Eco warrior" };
     protected static string[] datingGoals = { "Shags", "Confused.com", "Gets aftercare", "Wifey", "Greedy" };
 
-    public Swipee(Random rnd) {
+    public Swipee(System.Random rnd) 
+    {
+        // Read from the file
+        string path = "Assets/Misc/names.txt";
+
+        StreamReader reader = new StreamReader(path);
+        string allNames = reader.ReadToEnd();
+        reader.Close();
+
         string[] allNames = File.ReadAllLines("names.txt");
         Name = allNames[rnd.Next(allNames.Length)];
         

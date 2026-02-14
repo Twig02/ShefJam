@@ -13,13 +13,9 @@ public class ScreenSizer : MonoBehaviour
 
     void Update()
     {
-<<<<<<< HEAD
         if (parentRect != null)
         {
             myRect.sizeDelta = parentRect.sizeDelta;
         }
-=======
-
->>>>>>> b719a45c911854be66d8bdd7e3b976a880d3afe9
     }
 }

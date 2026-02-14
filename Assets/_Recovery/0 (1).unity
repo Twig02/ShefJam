@@ -2094,6 +2094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MessageController
   emptyButtonPrefab: {fileID: 1187712928356210227, guid: 043f736f39375e144b6970eea8ad2326, type: 3}
   responseSprite: {fileID: 2521634805892026358, guid: 6d31559873bf3144090ad9a26d30d303, type: 3}
+  defaultPosition: {x: -10, y: -95}
 --- !u!1 &2080104340
 GameObject:
   m_ObjectHideFlags: 0

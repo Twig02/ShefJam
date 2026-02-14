@@ -11,17 +11,121 @@ public class MessageController : MonoBehaviour
 {
     public GameObject emptyButtonPrefab;
     public Sprite responseSprite;
+    public GameObject[] buttonList = new GameObject[3];
 
     private List<GameObject> messages;
     private Vector2 defaultPosition;
+    int personalityType;
+    int messageCounter;
+
+    // Dialogue
+    private string[,] characterDialogue = { 
+        // Flirty
+        {
+            "My my, who is this cutie I just found",
+            "Soo, do you want to spend the night with me",
+            "So what’s your opinion on being tied up",
+            "Oh, that's one good response",
+            "Coming on a bit strong now…",
+            "You’re no fun",
+            "Oh, yes, we will~",
+            "It’s not me, it’s YOU"
+        },
+        // Chav
+        {
+            "Wagwan G. U send?",
+            "What kinda music you into brev?",
+            "I rate we roll one and see what happens yeah?",
+            "Nice one brev",
+            "Yeah whatever man, you get me",
+            "Nah what you sayin blud",
+            "Mad ting I’ll pick you up in the whip at 8 yeah?",
+            "Man got balls askin that so early. Fuck off bro"
+        },
+        // Dry
+        {
+            "Hey",
+            "hmm",
+            "lol",
+            "Nice",
+            "Yeah fair",
+            "*seen*",
+            "Sure",
+            "No"
+        },
+        // Nerd
+        {
+            "Heyyyy. Do you play DnD?",
+            "My spider senses tingle",
+            "Hear me out, a date in the library",
+            "Oh YES I like that",
+            "Hmm, I’m not sure that’s…",
+            "Ew",
+            "Hell yeah, we can play DnD after too",
+            "Nah, dude, you stink"
+        },
+        // Northern Soul
+        {
+            "Ayup love. How’d you take your brew?",
+            "What are you having for your tea tonight then?",
+            "Where abouts up north are ya from?",
+            "That's reyt good",
+            "Ay, our kid",
+            "Your kind bloody disgust me",
+            "That sounds lovely pet",
+            "I’d rather go down t’pit"
+        }
+    };
+
+    // Responses
+    private string[,] playerDialogue = { 
+        // Flirty
+        {
+            "You da real cutie", "Not if I find you cute first", "Calm thyself",
+            "Sounds awesome, I’ll bring snacks", "YES, let's do some FUN stuff~", "At least, take me out to dinner first, damn",
+            "If you let me tie you up first ;)", "YES YES PLEASE I NEED THIS", "CHILL I’M NOT INTO THAT",
+            "Well well, looks like we will have a great night together"
+        },
+        // Chav
+        {
+            "Buy me a drink and you’ll get more than that", "Ye type shit *image*", "You first?",
+            "Dizzie Rascal absolutely slaps", "I actually knew the Arctic Monkeys before they were big", "Pink Pony Club goes hard in the clurb",
+            "You buy the grass I’ll bring some skins", "I got coke if you want somet stronger", "I rate getting wankered on cheap wine instead tbh",
+            "You should come West Street Live tonight. Wanna split a £5 round with me?"
+        },
+        // Dry
+        {
+            "Hello to you too", "HEYYYY HELLO", "Care to be more conversational?",
+            "Say nice if you wanna go on a date", "I’m gonna need a bit more than that", "HMM",
+            "LMAO", "lol", "shag?",
+            "Okay, the convo didn’t go anywhere. Wanna hang out in person?"
+        },
+        // Nerd
+        {
+            "Yes, my favourite class is Rogue", "No? What is that", "Yes, I like to play Zoomer class",
+            "Spooder man", "Nah, Deadpool better", "Ewww, what else is tingling",
+            "Yes, please, I love reading", "How about a coffee date instead", "NERDDDD",
+            "So, fancy a date with me now?"
+        },
+        // Northern Soul
+        {
+            "Proper builder’s cuppa nowt better.", "Gotta go with PG tips right?", "I’m actually trying to stay off the caffeine for a bit.",
+            "Pie, mash and gravy all the way.", "3 pints of lager and a packet of crisps.", "Cheeky tikka masala down the curry house",
+            "I were born in Bradford, but I were made int Royal Navy", "Grew up in Newcastle. Got sausage rolls flowing through me blood", "Just across the Pennines in Manchester",
+            "Fancy going t’pub later?"
+        }
+    };
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         messages = new List<GameObject>();
-        defaultPosition = new Vector2(-12, -95);
+        defaultPosition = new Vector2(-12, -80);
+        personalityType = UnityEngine.Random.Range(1, 6);
 
-        startConversation("Starting the Conversation");
+        messageCounter = 0;
+        startConversation(characterDialogue[personalityType, messageCounter]);
+        updateButtons();
     }
 
     // Update is called once per frame
@@ -29,8 +133,6 @@ public class MessageController : MonoBehaviour
     {
 
     }
-
-
 
     public void onButtonClick()
     {
@@ -48,11 +150,17 @@ public class MessageController : MonoBehaviour
     {
         float startTime = Time.time;
         yield return new WaitForSeconds(((float)UnityEngine.Random.Range(8, 21)) / 10f);
-        createNewMessage(false, "I respond to \"" + userMessage + "\"");
+
+        // THE BELOW LINE IS INCOMPLETE, NEED TO
+        // IMPLEMENT LOGIC FOR CHOSING BETWEEN GOOD NEUTRAL OR OK ANSWERS
+        createNewMessage(false, characterDialogue[personalityType, 1]);
 
         startTime = Time.time;
         yield return new WaitForSeconds(((float)UnityEngine.Random.Range(8, 21)) / 10f);
-        createNewMessage(false, "Heres a question");
+        createNewMessage(false, characterDialogue[personalityType, messageCounter]);
+        messageCounter++;
+
+        updateButtons();
     }
 
     private void createNewMessage(bool userMessage, string messageText)
@@ -92,6 +200,21 @@ public class MessageController : MonoBehaviour
         {
             Destroy(messages[0]);
             messages.Remove(messages[0]);
+        }
+    }
+
+    public void updateButtons()
+    {
+        if (messageCounter == 3)
+        {
+            buttonList[0].SetActive(false);
+            buttonList[2].SetActive(false);
+            buttonList[1].GetComponent<TMP_Text>().text = playerDialogue[personalityType, 9];
+        }
+        for (int i = 0; i < buttonList.Length; i++)
+        {
+            buttonList[i].transform.GetChild(0).GetComponent<TMP_Text>().text =
+                playerDialogue[personalityType, (3 * messageCounter) + i];
         }
     }
 }

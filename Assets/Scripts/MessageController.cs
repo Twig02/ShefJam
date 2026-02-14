@@ -30,6 +30,8 @@ public class MessageController : MonoBehaviour
 
     }
 
+
+
     public void onButtonClick()
     {
         string text = EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TMP_Text>().text;
@@ -49,7 +51,7 @@ public class MessageController : MonoBehaviour
         createNewMessage(false, "I respond to \"" + userMessage + "\"");
 
         startTime = Time.time;
-        yield return new WaitForSeconds(((float)UnityEngine.Random.Range(3, 15)) / 10f);
+        yield return new WaitForSeconds(((float)UnityEngine.Random.Range(8, 21)) / 10f);
         createNewMessage(false, "Heres a question");
     }
 

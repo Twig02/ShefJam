@@ -25,12 +25,12 @@ public class MessageController : MonoBehaviour
         {
             "My my, who is this cutie I just found",
             "Soo, do you want to spend the night with me",
-            "So what’s your opinion on being tied up",
+            "So whatï¿½s your opinion on being tied up",
             "Oh, that's one good response",
-            "Coming on a bit strong now…",
-            "You’re no fun",
+            "Coming on a bit strong nowï¿½",
+            "Youï¿½re no fun",
             "Oh, yes, we will~",
-            "It’s not me, it’s YOU"
+            "Itï¿½s not me, itï¿½s YOU"
         },
         // Chav
         {
@@ -40,7 +40,7 @@ public class MessageController : MonoBehaviour
             "Nice one brev",
             "Yeah whatever man, you get me",
             "Nah what you sayin blud",
-            "Mad ting I’ll pick you up in the whip at 8 yeah?",
+            "Mad ting Iï¿½ll pick you up in the whip at 8 yeah?",
             "Man got balls askin that so early. Fuck off bro"
         },
         // Dry
@@ -60,21 +60,21 @@ public class MessageController : MonoBehaviour
             "My spider senses tingle",
             "Hear me out, a date in the library",
             "Oh YES I like that",
-            "Hmm, I’m not sure that’s…",
+            "Hmm, Iï¿½m not sure thatï¿½sï¿½",
             "Ew",
             "Hell yeah, we can play DnD after too",
             "Nah, dude, you stink"
         },
         // Northern Soul
         {
-            "Ayup. How’d you take your brew?",
+            "Ayup. Howï¿½d you take your brew?",
             "What are you having for your tea tonight then?",
             "Where abouts up north are ya from?",
             "That's reyt good",
             "Ay, our kid",
             "Your kind bloody disgust me",
             "That sounds lovely pet",
-            "I’d rather go down t’pit"
+            "Iï¿½d rather go down tï¿½pit"
         }
     };
 
@@ -83,23 +83,23 @@ public class MessageController : MonoBehaviour
         // Flirty
         {
             "You da real cutie", "Not if I find you cute first", "Calm thyself",
-            "Sounds awesome, I’ll bring snacks", "YES, let's do some FUN stuff~", "At least, take me out to dinner first, damn",
-            "If you let me tie you up first ;)", "YES YES PLEASE I NEED THIS", "CHILL I’M NOT INTO THAT",
+            "Sounds awesome, Iï¿½ll bring snacks", "YES, let's do some FUN stuff~", "At least, take me out to dinner first, damn",
+            "If you let me tie you up first ;)", "YES YES PLEASE I NEED THIS", "CHILL Iï¿½M NOT INTO THAT",
             "Well well, looks like we will have a great night together"
         },
         // Chav
         {
-            "Buy me a drink and you’ll get more than that", "Ye type shit *image*", "You first?",
+            "Buy me a drink and youï¿½ll get more than that", "Ye type shit *image*", "You first?",
             "Dizzie Rascal absolutely slaps", "I actually knew the Arctic Monkeys before they were big", "Pink Pony Club goes hard in the clurb",
-            "You buy the grass I’ll bring some skins", "I got coke if you want somet stronger", "I rate getting wankered on cheap wine instead tbh",
-            "You should come West Street Live tonight. Wanna split a £5 round with me?"
+            "You buy the grass Iï¿½ll bring some skins", "I got coke if you want somet stronger", "I rate getting wankered on cheap wine instead tbh",
+            "You should come West Street Live tonight. Wanna split a ï¿½5 round with me?"
         },
         // Dry
         {
             "Hello to you too", "HEYYYY HELLO", "Care to be more conversational?",
-            "Say nice if you wanna go on a date", "I’m gonna need a bit more than that", "HMM",
+            "Say nice if you wanna go on a date", "Iï¿½m gonna need a bit more than that", "HMM",
             "LMAO", "lol", "shag?",
-            "Okay, the convo didn’t go anywhere. Wanna hang out in person?"
+            "Okay, the convo didnï¿½t go anywhere. Wanna hang out in person?"
         },
         // Nerd
         {
@@ -110,10 +110,10 @@ public class MessageController : MonoBehaviour
         },
         // Northern Soul
         {
-            "Proper builder’s cuppa nowt better.", "Gotta go with PG tips right?", "I’m actually trying to stay off the caffeine for a bit.",
+            "Proper builderï¿½s cuppa nowt better.", "Gotta go with PG tips right?", "Iï¿½m actually trying to stay off the caffeine for a bit.",
             "Pie, mash and gravy all the way.", "3 pints of lager and a packet of crisps.", "Cheeky tikka masala down the curry house",
             "I were born in Bradford, but I were made int Royal Navy", "Grew up in Newcastle. Got sausage rolls flowing through me blood", "Just across the Pennines in Manchester",
-            "Fancy going t’pub later?"
+            "Fancy going tï¿½pub later?"
         }
     };
 
@@ -142,7 +142,6 @@ public class MessageController : MonoBehaviour
             default:
                 personalityType = 5; break;
         }
-
         messages = new List<GameObject>();
         defaultPosition = new Vector2(-12, -80);
 

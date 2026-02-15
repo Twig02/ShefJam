@@ -2544,6 +2544,8 @@ MonoBehaviour:
   - {fileID: 206684598}
   - {fileID: 1723541466}
   - {fileID: 2005384626}
+  successfulMatches: 0
+  successfulDates: 0
 --- !u!1 &1393216357
 GameObject:
   m_ObjectHideFlags: 0
@@ -3468,7 +3470,7 @@ GameObject:
   - component: {fileID: 1988095489}
   m_Layer: 5
   m_Name: MessagePanel
-  m_TagString: Untagged
+  m_TagString: MessageController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

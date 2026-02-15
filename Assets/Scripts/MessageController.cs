@@ -189,9 +189,15 @@ public class MessageController : MonoBehaviour
             if (score >= UnityEngine.Random.Range(1,11))
             {
                 finalResultIndex = 6;
+                GameObject.Find("Content").GetComponent<Init>().successfulDates++;
+                Debug.Log(GameObject.Find("Content").GetComponent<Init>().successfulDates);
+            }
+            else
+            {
+                finalResultIndex = 7;
             }
 
-            createNewMessage(false, characterDialogue[personalityType, finalResultIndex]);
+                createNewMessage(false, characterDialogue[personalityType, finalResultIndex]);
 
             foreach (GameObject btn in buttonList) btn.SetActive(false);
             messageCounter = 99;

@@ -25,12 +25,12 @@ public class MessageController : MonoBehaviour
         {
             "My my, who is this cutie I just found",
             "Soo, do you want to spend the night with me",
-            "So what�s your opinion on being tied up",
+            "So what's your opinion on being tied up",
             "Oh, that's one good response",
-            "Coming on a bit strong now�",
-            "You�re no fun",
+            "Coming on a bit strong now'",
+            "You're no fun",
             "Oh, yes, we will~",
-            "It�s not me, it�s YOU"
+            "It's not me, it's YOU"
         },
         // Chav
         {
@@ -40,7 +40,7 @@ public class MessageController : MonoBehaviour
             "Nice one brev",
             "Yeah whatever man, you get me",
             "Nah what you sayin blud",
-            "Mad ting I�ll pick you up in the whip at 8 yeah?",
+            "Mad ting I'll pick you up in the whip at 8 yeah?",
             "Man got balls askin that so early. Fuck off bro"
         },
         // Dry
@@ -60,21 +60,21 @@ public class MessageController : MonoBehaviour
             "My spider senses tingle",
             "Hear me out, a date in the library",
             "Oh YES I like that",
-            "Hmm, I�m not sure that�s�",
+            "Hmm, I'm not sure that's'",
             "Ew",
             "Hell yeah, we can play DnD after too",
             "Nah, dude, you stink"
         },
         // Northern Soul
         {
-            "Ayup. How�d you take your brew?",
+            "Ayup. How'd you take your brew?",
             "What are you having for your tea tonight then?",
             "Where abouts up north are ya from?",
             "That's reyt good",
             "Ay, our kid",
             "Your kind bloody disgust me",
             "That sounds lovely pet",
-            "I�d rather go down t�pit"
+            "I'd rather go down t'pit"
         }
     };
 
@@ -83,23 +83,23 @@ public class MessageController : MonoBehaviour
         // Flirty
         {
             "You da real cutie", "Not if I find you cute first", "Calm thyself",
-            "Sounds awesome, I�ll bring snacks", "YES, let's do some FUN stuff~", "At least, take me out to dinner first, damn",
-            "If you let me tie you up first ;)", "YES YES PLEASE I NEED THIS", "CHILL I�M NOT INTO THAT",
+            "Sounds awesome, I'll bring snacks", "YES, let's do some FUN stuff~", "At least, take me out to dinner first, damn",
+            "If you let me tie you up first ;)", "YES YES PLEASE I NEED THIS", "CHILL I'M NOT INTO THAT",
             "Well well, looks like we will have a great night together"
         },
         // Chav
         {
-            "Buy me a drink and you�ll get more than that", "Ye type shit *image*", "You first?",
+            "Buy me a drink and you'll get more than that", "Ye type shit *image*", "You first?",
             "Dizzie Rascal absolutely slaps", "I actually knew the Arctic Monkeys before they were big", "Pink Pony Club goes hard in the clurb",
-            "You buy the grass I�ll bring some skins", "I got coke if you want somet stronger", "I rate getting wankered on cheap wine instead tbh",
-            "You should come West Street Live tonight. Wanna split a �5 round with me?"
+            "You buy the grass I'll bring some skins", "I got coke if you want somet stronger", "I rate getting wankered on cheap wine instead tbh",
+            "You should come West Street Live tonight. Wanna split a '5 round with me?"
         },
         // Dry
         {
             "Hello to you too", "HEYYYY HELLO", "Care to be more conversational?",
-            "Say nice if you wanna go on a date", "I�m gonna need a bit more than that", "HMM",
+            "Say nice if you wanna go on a date", "I'm gonna need a bit more than that", "HMM",
             "LMAO", "lol", "shag?",
-            "Okay, the convo didn�t go anywhere. Wanna hang out in person?"
+            "Okay, the convo didn't go anywhere. Wanna hang out in person?"
         },
         // Nerd
         {
@@ -110,10 +110,10 @@ public class MessageController : MonoBehaviour
         },
         // Northern Soul
         {
-            "Proper builder�s cuppa nowt better.", "Gotta go with PG tips right?", "I�m actually trying to stay off the caffeine for a bit.",
+            "Proper builder's cuppa nowt better.", "Gotta go with PG tips right?", "I'm actually trying to stay off the caffeine for a bit.",
             "Pie, mash and gravy all the way.", "3 pints of lager and a packet of crisps.", "Cheeky tikka masala down the curry house",
             "I were born in Bradford, but I were made int Royal Navy", "Grew up in Newcastle. Got sausage rolls flowing through me blood", "Just across the Pennines in Manchester",
-            "Fancy going t�pub later?"
+            "Fancy going t'pub later?"
         }
     };
 
@@ -159,6 +159,7 @@ public class MessageController : MonoBehaviour
 
     public void onButtonClick()
     {
+        foreach (GameObject button in buttonList){ button.SetActive(false); }
         string text = EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TMP_Text>().text;
         createNewMessage(true, text);
         int optionIndex = -1;
@@ -184,11 +185,26 @@ public class MessageController : MonoBehaviour
         if (optionIndex == 9)
         {
             yield return new WaitForSeconds(UnityEngine.Random.Range(1.0f, 3.0f));
-            int finalResultIndex = 6;
-            createNewMessage(false, characterDialogue[personalityType, finalResultIndex]);
+            int finalResultIndex = 7;
+            if (score >= UnityEngine.Random.Range(1,11))
+            {
+                finalResultIndex = 6;
+                GameObject.Find("Content").GetComponent<Init>().successfulDates++;
+                Debug.Log(GameObject.Find("Content").GetComponent<Init>().successfulDates);
+            }
+            else
+            {
+                finalResultIndex = 7;
+            }
+
+                createNewMessage(false, characterDialogue[personalityType, finalResultIndex]);
 
             foreach (GameObject btn in buttonList) btn.SetActive(false);
             messageCounter = 99;
+
+            yield return new WaitForSeconds(3f);
+            foreach (GameObject message in messages) message.SetActive(false);
+
         }
         else
         {
@@ -196,8 +212,7 @@ public class MessageController : MonoBehaviour
             yield return new WaitForSeconds(((float)UnityEngine.Random.Range(8, 21)) / 10f);
 
             int indexOfResponse = 3 + (optionIndex % 3);
-            Debug.Log(indexOfResponse);
-            score += 5 - indexOfResponse;
+            score += 5 - indexOfResponse + 1;
             Debug.Log(score);
             createNewMessage(false, characterDialogue[personalityType, indexOfResponse]);
 

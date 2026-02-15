@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class TickScript : MonoBehaviour
@@ -10,30 +11,30 @@ public class TickScript : MonoBehaviour
         contentObject.GetComponent<Init>().UpdateSwipeScreen(currentSwipee);
     }
 
-    public bool matchOrNot(Swipee swipee, Swiper player, Random rnd) {
-        // do the preference stuff here    
-        double jobModifier = jobModifierCalculator(swipee, player);
-        double ageModifier =  ageModifierCalculator(swipee, player);
-        double datingGoalsModifier =  datingGoalsModifierCalculator(swipee, player);
-        double heightModifier =  heightModifierCalculator(swipee, player);
-        double ricePurityModifier =  ricePurityModifierCalculator(swipee, player);
+    //public bool matchOrNot(Swipee swipee, Swiper player, System.Random rnd) {
+    //    // do the preference stuff here    
+    //    double jobModifier = jobModifierCalculator(swipee, player);
+    //    double ageModifier =  ageModifierCalculator(swipee, player);
+    //    double datingGoalsModifier =  datingGoalsModifierCalculator(swipee, player);
+    //    double heightModifier =  heightModifierCalculator(swipee, player);
+    //    double ricePurityModifier =  ricePurityModifierCalculator(swipee, player);
 
-        double totalModifier = Math.Max(jobModifier * ageModifier * datingGoalsModifier * heightModifier * ricePurityModifier, 0.2);
+    //    double totalModifier = Math.Max(jobModifier * ageModifier * datingGoalsModifier * heightModifier * ricePurityModifier, 0.2);
         
-        if (rnd.Next(101) <= (totalModifier * 100)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    //    if (rnd.Next(101) <= (totalModifier * 100)) {
+    //        return true;
+    //    } else {
+    //        return false;
+    //    }
+    //}
 
-    public bool hitPreferences() {
-        //do this soon
-    }
+    //public bool hitPreferences() {
+    //    //do this soon
+    //}
 
-    public double jobModifierCalculator(Swipee swipee, Swiper player) {
-        return Swiper.jobsArray[Swiper.jobsDict[swipee.Job]][Swiper.jobsDict[player.Job]];
-    }
+    //public double jobModifierCalculator(Swipee swipee, Swiper player) {
+    //    return Swiper.jobsArray[Swiper.jobsDict[swipee.Job]][Swiper.jobsDict[player.Job]];
+    //}
 
     public double ageModifierCalculator(Swipee swipee, Swiper player) {
         int swipeeAge = swipee.Age;
@@ -62,16 +63,16 @@ public class TickScript : MonoBehaviour
         }
     }
 
-    public double datingGoalsModifierCalculator(Swipee swipee, Swiper player) {
-        return Swiper.datingGoalsArray[Swiper.datingGoalsDict[swipee.DatingIntentions]][Swiper.datingGoalsDict[player.DatingIntentions]];
-    }
+    //public double datingGoalsModifierCalculator(Swipee swipee, Swiper player) {
+    //    return Swiper.datingGoalsArray[Swiper.datingGoalsDict[swipee.DatingIntentions]][Swiper.datingGoalsDict[player.DatingIntentions]];
+    //}
 
-    public double heightModifierCalculator(Swipee swipee, Swiper player) {
-        int swipeeHeight = Int.Parse(swipee.Height[0]) * 12 + Int.Parse(swipee.Height[2..^1]);
-        int playerHeight = Int.Parse(player.Height[0]) * 12 + Int.Parse(player.Height[2..^1]);
+    //public double heightModifierCalculator(Swipee swipee, Swiper player) {
+    //    int swipeeHeight = Int.Parse(swipee.Height[0]) * 12 + Int.Parse(swipee.Height[2..^1]);
+    //    int playerHeight = Int.Parse(player.Height[0]) * 12 + Int.Parse(player.Height[2..^1]);
 
-        int heightDifference = playerHeight - swipeeHeight;
-    }
+    //    int heightDifference = playerHeight - swipeeHeight;
+    //}
 
     public double ricePurityModifierCalculator(Swipee swipee, Swiper player) {
         int ricePurityDifference = Math.Abs(swipee.RicePurityScore - player.RicePurityScore);

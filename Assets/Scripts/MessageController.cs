@@ -185,10 +185,10 @@ public class MessageController : MonoBehaviour
         if (optionIndex == 9)
         {
             yield return new WaitForSeconds(UnityEngine.Random.Range(1.0f, 3.0f));
-            int finalResultIndex = 6;
+            int finalResultIndex = 7;
             if (score >= UnityEngine.Random.Range(1,11))
             {
-                finalResultIndex = 7;
+                finalResultIndex = 6;
             }
 
             createNewMessage(false, characterDialogue[personalityType, finalResultIndex]);
@@ -206,7 +206,6 @@ public class MessageController : MonoBehaviour
             yield return new WaitForSeconds(((float)UnityEngine.Random.Range(8, 21)) / 10f);
 
             int indexOfResponse = 3 + (optionIndex % 3);
-            Debug.Log(indexOfResponse);
             score += 5 - indexOfResponse + 1;
             Debug.Log(score);
             createNewMessage(false, characterDialogue[personalityType, indexOfResponse]);

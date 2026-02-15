@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class TickScript : MonoBehaviour
 {
@@ -15,10 +16,10 @@ public class TickScript : MonoBehaviour
             double jobModifier = jobModifierCalculator(swipee, player);
             double ageModifier =  ageModifierCalculator(swipee, player);
             double datingGoalsModifier =  datingGoalsModifierCalculator(swipee, player);
-            //double heightModifier =  heightModifierCalculator(swipee, player);
+            double heightModifier =  heightModifierCalculator(swipee, player);
             double ricePurityModifier =  ricePurityModifierCalculator(swipee, player);
 
-            double totalModifier = Math.Max(jobModifier * ageModifier * datingGoalsModifier * ricePurityModifier, 0.2);
+            double totalModifier = Math.Max(jobModifier * ageModifier * datingGoalsModifier * heightModifier * ricePurityModifier, 0.2);
             
             if (rnd.Next(101) <= (totalModifier * 100)) {
                 return true;
@@ -26,12 +27,13 @@ public class TickScript : MonoBehaviour
                 return false;
             }
         }
+        return false;
     }
 
     public bool hitPreferences(Swipee swipee, Swiper player) {
         for (int i = 0; i < 2; i++)
         {
-            switch (player.Preferences[i].category)
+            switch (player.Preferences[i].Category)
             {
                 case "Hair Length":
                     if (swipee.Looks[0] != player.Preferences[i].Value) return false;
@@ -51,7 +53,7 @@ public class TickScript : MonoBehaviour
     }
 
     public double jobModifierCalculator(Swipee swipee, Swiper player) {
-        return Swiper.jobsArray[Swiper.jobsDict[swipee.Job]][Swiper.jobsDict[player.Job]];
+        return Swiper.jobsArray[Swiper.jobsDict[swipee.Job], Swiper.jobsDict[player.Job]];
     }
 
     public double ageModifierCalculator(Swipee swipee, Swiper player) {
@@ -82,14 +84,24 @@ public class TickScript : MonoBehaviour
     }
 
     public double datingGoalsModifierCalculator(Swipee swipee, Swiper player) {
-        return Swiper.datingGoalsArray[Swiper.datingGoalsDict[swipee.DatingIntentions]][Swiper.datingGoalsDict[player.DatingIntentions]];
+        return Swiper.datingGoalsArray[Swiper.datingGoalsDict[swipee.DatingIntentions], Swiper.datingGoalsDict[player.DatingIntentions]];
     }
 
     public double heightModifierCalculator(Swipee swipee, Swiper player) {
-        int swipeeHeight = Int.Parse(swipee.Height[0]) * 12 + Int.Parse(swipee.Height[2..^1]);
-        int playerHeight = Int.Parse(player.Height[0]) * 12 + Int.Parse(player.Height[2..^1]);
+        int swipeeHeight = int.Parse(swipee.Height[0].ToString()) * 12 + int.Parse(swipee.Height[2..^1].ToString());
+        int playerHeight = int.Parse(player.Height[0].ToString()) * 12 + int.Parse(player.Height[2..^1].ToString());
 
-        int heightDifference = playerHeight - swipeeHeight;
+        int heightDifference = Math.Abs(playerHeight - swipeeHeight);
+
+        if (heightDifference < 3) {
+            return 1.4;
+        } else if (heightDifference < 6) {
+            return 1.2;
+        } else if (heightDifference < 10) {
+            return 1;
+        } else {
+            return 0.7;
+        }
     }
 
     public double ricePurityModifierCalculator(Swipee swipee, Swiper player) {

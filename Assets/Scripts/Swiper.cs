@@ -11,7 +11,7 @@ public class Swiper : Swipee {
 
     public Preference[] Preferences;
 
-    private static readonly double[,] jobsArray = {
+    public static readonly double[,] jobsArray = {
 {1, 0.9, 1.1, 0.7, 0.8, 1, 0.7, 1.1, 0.6, 1.2, 1.3, 0.9, 1.4, 1, 1.2, 0.5, 1, 0.8, 1.1, 0.7, 0.8, 0.9, 1.1, 0.7, 1.3, 0.9, 0.7, 1, 1.1, 0.9}, 
 {0.9,1,1.2,1.3, 0.6, 1.1, 0.7, 1, 1.1, 0.7, 1.3, 0.6, 0.9, 0.8, 1.1, 0.7, 1.1, 1.2, 0.9, 1.1, 1.3, 0.7, 0.8, 1.1, 0.9, 0.8, 0.7, 1.2, 1.2, 1},
 {1.1, 1.2, 1, 1.2, 0.9, 1.1, 1, 1.3, 1.1, 0.9, 0.9, 0.8, 0.8, 0.7, 1, 0.6, 1.1, 1.4, 1.1, 1.2, 1.4, 0.8, 0.9, 1.3, 0.8, 1, 0.8, 0.9, 1.1, 0.8},
@@ -44,7 +44,7 @@ public class Swiper : Swipee {
 {0.9, 1, 0.8, 0.7, 0.7, 1.4, 0.5, 0.8, 1.1, 0.9, 0.8, 0.6, 0.9, 0.6, 1.2, 0.5, 1.2, 1.4, 1.4, 1.5, 1.1, 0.6, 0.8, 1.2, 1, 1.3, 1, 1.2, 1.3, 1}
     };
 	
-    private static readonly Dictionary<string, int> jobsDict = new Dictionary<string, int>() {
+    public static readonly Dictionary<string, int> jobsDict = new Dictionary<string, int>() {
         {"Diamond Plug Fixer", 0},
         {"Unemployed", 1}, 
         {"Pint pourer", 2}, 
@@ -77,7 +77,7 @@ public class Swiper : Swipee {
         {"Eco warrior", 29} 
     };
 
-    private static readonly double[,] datingGoalsArray = {
+    public static readonly double[,] datingGoalsArray = {
         {1.2, 0.5, 0.8, 0.6, 0.9},
         {0.5, 0.7, 0.5, 0.5, 0.5},
         {0.8, 0.5, 1.2, 1.1, 1},
@@ -85,7 +85,7 @@ public class Swiper : Swipee {
         {0.9, 0.5, 1, 0.8, 1.3}
     };
 
-    private static readonly Dictionary<string, int> datingGoalsDict = new Dictionary<string, int>() {
+    public static readonly Dictionary<string, int> datingGoalsDict = new Dictionary<string, int>() {
         {"Shags", 0},
         {"Confused.com", 1},
         {"Gets aftercare", 2},

@@ -5,13 +5,15 @@ using TMPro;
 public class Init : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI[] textFields;
+    public Swipee currentSwipe;
+    public Swiper player;
 
     void Start()
     {
         System.Random rmd = new System.Random();
-        Swiper player = new Swiper(rmd);
+        player = new Swiper(rmd);
         Swipee[] successfulMatches = new Swipee[15];
-        Swipee currentSwipe = new Swipee(rmd);
+        currentSwipe = new Swipee(rmd);
         UpdateSwipeScreen(currentSwipe);
     }
 

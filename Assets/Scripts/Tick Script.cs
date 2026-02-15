@@ -1,22 +1,24 @@
 using System;
 using UnityEngine;
-using System;
 
 public class TickScript : MonoBehaviour
 {
     public GameObject contentObject;
     public void onButtonClick()
     {
+        Swipee currentSwipe = contentObject.GetComponent<Init>().currentSwipe;
+        Swiper player = contentObject.GetComponent<Init>().player;
+
         System.Random rmd = new System.Random();
-        if (matchOrNot(currentSwipee, player, rmd)) {
-            switch (currentSwipee.Personality) {
+        if (matchOrNot(currentSwipe, player, rmd)) {
+            switch (currentSwipe.Personality) {
                 case "Flirty":
                     break;
             }
         }
 
-        Swipee currentSwipee = new Swipee(rmd);
-        contentObject.GetComponent<Init>().UpdateSwipeScreen(currentSwipee);
+        currentSwipe = new Swipee(rmd);
+        contentObject.GetComponent<Init>().UpdateSwipeScreen(currentSwipe);
     }
 
     public bool matchOrNot(Swipee swipee, Swiper player, System.Random rnd) {
@@ -58,6 +60,10 @@ public class TickScript : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public double jobModifierCalculator(Swipee swipee, Swiper player) {
+        return Swiper.jobsArray[Swiper.jobsDict[swipee.DatingIntentions], Swiper.jobsDict[player.DatingIntentions]];
     }
 
     public double ageModifierCalculator(Swipee swipee, Swiper player) {

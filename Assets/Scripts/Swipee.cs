@@ -14,7 +14,7 @@ public class Swipee
     public string Description;
 
     protected static string[] hairLength = { "Short", "Medium", "Long" };
-    protected static string[] hairColour = { "Blonde", "Brown", "Ginger" };
+    protected static string[] hairColour = { "Blonde", "Brown", "Evie" };
     protected static string[] eyeColour = { "Brown", "Blue", "Green" };
     protected static string[] glasses = { "Glasses", "No glasses" };
     protected static string[] personalities = { "Flirty", "Chav", "Dry", "Nerd", "Northern Soul" };

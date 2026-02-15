@@ -18,6 +18,7 @@ public class MessageController : MonoBehaviour
     int personalityType;
     int messageCounter;
     int score;
+    public GameObject tick;
 
     // Dialogue
     private string[,] characterDialogue = { 
@@ -125,6 +126,8 @@ public class MessageController : MonoBehaviour
 
     public void startMessaging(string personality)
     {
+        tick.SetActive(false);
+
         foreach (GameObject button in buttonList) { button.SetActive(true); }
 
         switch (personality)
@@ -197,6 +200,7 @@ public class MessageController : MonoBehaviour
                 finalResultIndex = 7;
             }
 
+            tick.SetActive(true);
                 createNewMessage(false, characterDialogue[personalityType, finalResultIndex]);
 
             foreach (GameObject btn in buttonList) btn.SetActive(false);

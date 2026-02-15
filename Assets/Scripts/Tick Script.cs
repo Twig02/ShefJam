@@ -12,7 +12,7 @@ public class TickScript : MonoBehaviour
 
         System.Random rmd = new System.Random();
         if (matchOrNot(currentSwipe, player, rmd)) {
-            successfulMatches += 1;
+            successfulMatches ++;
             MessageController messageController = GameObject.FindGameObjectWithTag("MessageController").GetComponent<MessageController>();
             messageController.startMessaging(currentSwipe.Personality);
         }
@@ -41,7 +41,7 @@ public class TickScript : MonoBehaviour
     }
 
     public bool hitPreferences(Swipee swipee, Swiper player) {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 1; i++)
         {
             switch (player.Preferences[i].Category)
             {

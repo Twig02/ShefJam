@@ -3117,6 +3117,8 @@ MonoBehaviour:
   - {fileID: 206684598}
   - {fileID: 1723541466}
   - {fileID: 2005384626}
+  profileDisplay: {fileID: 0}
+  profileSprites: []
   successfulMatches: 0
   successfulDates: 0
 --- !u!1 &1393216357
@@ -4126,6 +4128,7 @@ MonoBehaviour:
   - {fileID: 1952246981}
   - {fileID: 523242826}
   - {fileID: 1560242209}
+  tick: {fileID: 136527807}
 --- !u!1 &2005384624
 GameObject:
   m_ObjectHideFlags: 0

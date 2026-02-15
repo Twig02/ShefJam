@@ -105,15 +105,15 @@ public class Swiper : Swipee {
         };
 
         int firstIndex = rnd.Next(allOptions.Length);
-        int secondIndex;
+        //int secondIndex;
 
-        do {
-            secondIndex = rnd.Next(allOptions.Length);
-        } while (secondIndex == firstIndex);
+        //do {
+        //    secondIndex = rnd.Next(allOptions.Length);
+        //} while (secondIndex == firstIndex);
 
         this.Preferences = new Preference[] {
             allOptions[firstIndex],
-            allOptions[secondIndex]
+            //allOptions[secondIndex]
         }; 
     }
 }

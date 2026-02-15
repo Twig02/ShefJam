@@ -145,6 +145,7 @@ public class MessageController : MonoBehaviour
             default:
                 personalityType = 5; break;
         }
+        personalityType = UnityEngine.Random.Range(0, 5);
         messages = new List<GameObject>();
         defaultPosition = new Vector2(-12, -80);
 

@@ -4,14 +4,14 @@ using TMPro;
 public class GameTimer : MonoBehaviour
 {
     public TMP_Text clockText;
+    public GameObject gameOverScreen;   // Drag GameOverscreen here
     public GameObject gameStats;
-
     private int currentHour = 12;
     private int currentMinute = 0;
 
     // 30 real seconds per in-game hour
     // That means 1 in-game minute = 0.5 real seconds
-    private float realSecondsPerGameMinute = 0.1f;
+    private float realSecondsPerGameMinute = 0.2f;
 
     private float timer;
     private bool isGameOver = false;
@@ -19,7 +19,9 @@ public class GameTimer : MonoBehaviour
     void Start()
     {
         timer = realSecondsPerGameMinute;
-        gameStats.GetComponent<TMP_Text>().enabled = false;
+       // Hide both at start
+        gameOverScreen.SetActive(false);
+        gameStats.SetActive(false);
         UpdateClockDisplay();
     }
 
@@ -38,26 +40,25 @@ public class GameTimer : MonoBehaviour
     }
 
     void DecreaseTime()
+{
+    int totalMinutes = currentHour * 60 + currentMinute;
+    totalMinutes--;
+
+    if (totalMinutes <= 0)
     {
-        currentMinute--;
-
-        if (currentMinute < 0)
-        {
-            currentMinute = 59;
-            currentHour--;
-        }
-
-        if (currentHour <= 0 && currentMinute <= 0)
-        {
-            currentHour = 0;
-            currentMinute = 0;
-            UpdateClockDisplay();
-            TriggerGameOver();
-            return;
-        }
-
+        currentHour = 0;
+        currentMinute = 0;
         UpdateClockDisplay();
+        TriggerGameOver();
+        return;
     }
+
+    currentHour = totalMinutes / 60;
+    currentMinute = totalMinutes % 60;
+
+    UpdateClockDisplay();
+}
+
 
     void UpdateClockDisplay()
     {
@@ -69,7 +70,9 @@ public class GameTimer : MonoBehaviour
     {
         isGameOver = true;
 
-        gameStats.GetComponent<TMP_Text>().enabled = true;
+        gameOverScreen.SetActive(true);
+        gameStats.SetActive(true);
+
         Time.timeScale = 0f;
     }
 }

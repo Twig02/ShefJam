@@ -17,6 +17,7 @@ public class MessageController : MonoBehaviour
     private Vector2 defaultPosition;
     int personalityType;
     int messageCounter;
+    int score;
 
     // Dialogue
     private string[,] characterDialogue = { 
@@ -126,6 +127,7 @@ public class MessageController : MonoBehaviour
         messageCounter = 0;
         startConversation(characterDialogue[personalityType, messageCounter]);
         updateButtons();
+        score = 0;
     }
 
     // Update is called once per frame
@@ -174,6 +176,8 @@ public class MessageController : MonoBehaviour
 
             int indexOfResponse = 3 + (optionIndex % 3);
             Debug.Log(indexOfResponse);
+            score += 5 - indexOfResponse;
+            Debug.Log(score);
             createNewMessage(false, characterDialogue[personalityType, indexOfResponse]);
 
             yield return new WaitForSeconds(((float)UnityEngine.Random.Range(8, 21)) / 10f);

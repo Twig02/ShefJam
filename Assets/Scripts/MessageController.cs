@@ -121,7 +121,7 @@ public class MessageController : MonoBehaviour
     {
         messages = new List<GameObject>();
         defaultPosition = new Vector2(-12, -80);
-        personalityType = UnityEngine.Random.Range(1, 6);
+        personalityType = UnityEngine.Random.Range(0, 5);
 
         messageCounter = 0;
         startConversation(characterDialogue[personalityType, messageCounter]);
@@ -158,27 +158,29 @@ public class MessageController : MonoBehaviour
 
     IEnumerator RespondToMessage(string userMessage, int optionIndex)
     {
-        if (messageCounter < 3)
+        if (optionIndex == 9)
+        {
+            yield return new WaitForSeconds(UnityEngine.Random.Range(1.0f, 3.0f));
+            int finalResultIndex = 6;
+            createNewMessage(false, characterDialogue[personalityType, finalResultIndex]);
+
+            foreach (GameObject btn in buttonList) btn.SetActive(false);
+            messageCounter = 99;
+        }
+        else
         {
             messageCounter++;
-
-            float startTime = Time.time;
             yield return new WaitForSeconds(((float)UnityEngine.Random.Range(8, 21)) / 10f);
 
             int indexOfResponse = 3 + (optionIndex % 3);
             Debug.Log(indexOfResponse);
             createNewMessage(false, characterDialogue[personalityType, indexOfResponse]);
 
-            startTime = Time.time;
             yield return new WaitForSeconds(((float)UnityEngine.Random.Range(8, 21)) / 10f);
-            createNewMessage(false, characterDialogue[personalityType, messageCounter]);
-
-            updateButtons();
-        }
-        else
-        {
-            createNewMessage(false, characterDialogue[personalityType, 7]);
-            messageCounter = 0;
+            if (messageCounter < 3)
+            {
+                createNewMessage(false, characterDialogue[personalityType, messageCounter]);
+            }
             updateButtons();
         }
     }
@@ -229,12 +231,21 @@ public class MessageController : MonoBehaviour
         {
             buttonList[0].SetActive(false);
             buttonList[2].SetActive(false);
-            buttonList[1].GetComponent<TMP_Text>().text = playerDialogue[personalityType, 9];
+
+            buttonList[1].SetActive(true);
+            buttonList[1].transform.GetChild(0).GetComponent<TMP_Text>().text = playerDialogue[personalityType, 9];
+
+            return;
         }
+
         for (int i = 0; i < buttonList.Length; i++)
         {
+            buttonList[i].SetActive(true);
+
+            int index = (3 * messageCounter) + i;
+
             buttonList[i].transform.GetChild(0).GetComponent<TMP_Text>().text =
-                playerDialogue[personalityType, (3 * messageCounter) + i];
+                playerDialogue[personalityType, index];
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System;
 
@@ -52,9 +53,15 @@ public class TickScript : MonoBehaviour
         return true;
     }
 
+<<<<<<< HEAD
     public double jobModifierCalculator(Swipee swipee, Swiper player) {
         return Swiper.jobsArray[Swiper.jobsDict[swipee.Job], Swiper.jobsDict[player.Job]];
     }
+=======
+    //public double jobModifierCalculator(Swipee swipee, Swiper player) {
+    //    return Swiper.jobsArray[Swiper.jobsDict[swipee.Job]][Swiper.jobsDict[player.Job]];
+    //}
+>>>>>>> 8d790c31e2c3120782fe0781c2dcfc35b0ea2043
 
     public double ageModifierCalculator(Swipee swipee, Swiper player) {
         int swipeeAge = swipee.Age;
@@ -83,6 +90,7 @@ public class TickScript : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     public double datingGoalsModifierCalculator(Swipee swipee, Swiper player) {
         return Swiper.datingGoalsArray[Swiper.datingGoalsDict[swipee.DatingIntentions], Swiper.datingGoalsDict[player.DatingIntentions]];
     }
@@ -103,6 +111,18 @@ public class TickScript : MonoBehaviour
             return 0.7;
         }
     }
+=======
+    //public double datingGoalsModifierCalculator(Swipee swipee, Swiper player) {
+    //    return Swiper.datingGoalsArray[Swiper.datingGoalsDict[swipee.DatingIntentions]][Swiper.datingGoalsDict[player.DatingIntentions]];
+    //}
+
+    //public double heightModifierCalculator(Swipee swipee, Swiper player) {
+    //    int swipeeHeight = Int.Parse(swipee.Height[0]) * 12 + Int.Parse(swipee.Height[2..^1]);
+    //    int playerHeight = Int.Parse(player.Height[0]) * 12 + Int.Parse(player.Height[2..^1]);
+
+    //    int heightDifference = playerHeight - swipeeHeight;
+    //}
+>>>>>>> 8d790c31e2c3120782fe0781c2dcfc35b0ea2043
 
     public double ricePurityModifierCalculator(Swipee swipee, Swiper player) {
         int ricePurityDifference = Math.Abs(swipee.RicePurityScore - player.RicePurityScore);

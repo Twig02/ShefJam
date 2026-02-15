@@ -7,12 +7,16 @@ public class Init : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] textFields;
     public Swipee currentSwipe;
     public Swiper player;
+    public int successfulMatches;
+    public int successfulDates;
+
 
     void Start()
     {
         System.Random rmd = new System.Random();
         player = new Swiper(rmd);
-        Swipee[] successfulMatches = new Swipee[15];
+        successfulMatches = 0;
+        successfulDates = 0;
         currentSwipe = new Swipee(rmd);
         UpdateSwipeScreen(currentSwipe);
     }

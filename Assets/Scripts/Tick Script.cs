@@ -8,13 +8,13 @@ public class TickScript : MonoBehaviour
     {
         Swipee currentSwipe = contentObject.GetComponent<Init>().currentSwipe;
         Swiper player = contentObject.GetComponent<Init>().player;
+        int successfulMatches = contentObject.GetComponent<Init>().successfulMatches;
 
         System.Random rmd = new System.Random();
         if (matchOrNot(currentSwipe, player, rmd)) {
-            switch (currentSwipe.Personality) {
-                case "Flirty":
-                    break;
-            }
+            successfulMatches += 1;
+            MessageController messageController = GameObject.FindGameObjectWithTag("MessageController").GetComponent<MessageController>();
+            messageController.startMessaging(currentSwipe.Personality);
         }
 
         currentSwipe = new Swipee(rmd);
@@ -63,7 +63,7 @@ public class TickScript : MonoBehaviour
     }
 
     public double jobModifierCalculator(Swipee swipee, Swiper player) {
-        return Swiper.jobsArray[Swiper.jobsDict[swipee.DatingIntentions], Swiper.jobsDict[player.DatingIntentions]];
+        return Swiper.jobsArray[Swiper.jobsDict[swipee.Job], Swiper.jobsDict[player.Job]];
     }
 
     public double ageModifierCalculator(Swipee swipee, Swiper player) {

@@ -120,9 +120,31 @@ public class MessageController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        foreach (GameObject button in buttonList) { button.SetActive(false); }
+    }
+
+    public void startMessaging(string personality)
+    {
+        foreach (GameObject button in buttonList) { button.SetActive(true); }
+
+        switch (personality)
+        {
+            case "Flirty":
+                personalityType = 0; break;
+            case "Chav":
+                personalityType = 1; break;
+            case "Dry":
+                personalityType = 2; break;
+            case "Nerd":
+                personalityType = 3; break;
+            case "Northern Soul":
+                personalityType = 4; break;
+            default:
+                personalityType = 5; break;
+        }
+
         messages = new List<GameObject>();
         defaultPosition = new Vector2(-12, -80);
-        personalityType = UnityEngine.Random.Range(0, 5);
 
         messageCounter = 0;
         startConversation(characterDialogue[personalityType, messageCounter]);

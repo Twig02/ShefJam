@@ -11,7 +11,7 @@ public class GameTimer : MonoBehaviour
 
     // 30 real seconds per in-game hour
     // That means 1 in-game minute = 0.5 real seconds
-    private float realSecondsPerGameMinute = 0.2f;
+    private float realSecondsPerGameMinute = 0.1f;
 
     private float timer;
     private bool isGameOver = false;
@@ -67,12 +67,22 @@ public class GameTimer : MonoBehaviour
     }
 
     void TriggerGameOver()
-    {
-        isGameOver = true;
+{
+    isGameOver = true;
 
-        gameOverScreen.SetActive(true);
-        gameStats.SetActive(true);
+    gameOverScreen.SetActive(true);
+    gameStats.SetActive(true);
 
-        Time.timeScale = 0f;
-    }
+    Init init = FindObjectOfType<Init>();
+
+    int matches = init.successfulMatches;
+    int dates = init.successfulDates;
+
+    gameStats.GetComponent<TMP_Text>().text =
+        "Matches: " + matches +
+        "\nSuccessful Dates: " + dates;
+
+    Time.timeScale = 0f;
+}
+
 }

@@ -11,26 +11,45 @@ public class TickScript : MonoBehaviour
         contentObject.GetComponent<Init>().UpdateSwipeScreen(currentSwipee);
     }
 
-    //public bool matchOrNot(Swipee swipee, Swiper player, System.Random rnd) {
-    //    // do the preference stuff here    
-    //    double jobModifier = jobModifierCalculator(swipee, player);
-    //    double ageModifier =  ageModifierCalculator(swipee, player);
-    //    double datingGoalsModifier =  datingGoalsModifierCalculator(swipee, player);
-    //    double heightModifier =  heightModifierCalculator(swipee, player);
-    //    double ricePurityModifier =  ricePurityModifierCalculator(swipee, player);
+    public bool matchOrNot(Swipee swipee, Swiper player, System.Random rnd) {
+        if (!hitPreferences(swipee, player)) {
+            double jobModifier = jobModifierCalculator(swipee, player);
+            double ageModifier =  ageModifierCalculator(swipee, player);
+            double datingGoalsModifier =  datingGoalsModifierCalculator(swipee, player);
+            //double heightModifier =  heightModifierCalculator(swipee, player);
+            double ricePurityModifier =  ricePurityModifierCalculator(swipee, player);
 
-    //    double totalModifier = Math.Max(jobModifier * ageModifier * datingGoalsModifier * heightModifier * ricePurityModifier, 0.2);
-        
-    //    if (rnd.Next(101) <= (totalModifier * 100)) {
-    //        return true;
-    //    } else {
-    //        return false;
-    //    }
-    //}
+            double totalModifier = Math.Max(jobModifier * ageModifier * datingGoalsModifier * ricePurityModifier, 0.2);
+            
+            if (rnd.Next(101) <= (totalModifier * 100)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
 
-    //public bool hitPreferences() {
-    //    //do this soon
-    //}
+    public bool hitPreferences(Swipee swipee, Swiper player) {
+        for (int i = 0; i < 2; i++)
+        {
+            switch (player.Preferences[i].category)
+            {
+                case "Hair Length":
+                    if (swipee.Looks[0] != player.Preferences[i].Value) return false;
+                    break;
+                case "Hair Colour":
+                    if (swipee.Looks[1] != player.Preferences[i].Value) return false;
+                    break;
+                case "Eye Colour":
+                    if (swipee.Looks[2] != player.Preferences[i].Value) return false;
+                    break;
+                case "Glasses":
+                    if (swipee.Looks[3] != player.Preferences[i].Value) return false;
+                    break;
+            }
+        }
+        return true;
+    }
 
     //public double jobModifierCalculator(Swipee swipee, Swiper player) {
     //    return Swiper.jobsArray[Swiper.jobsDict[swipee.Job]][Swiper.jobsDict[player.Job]];

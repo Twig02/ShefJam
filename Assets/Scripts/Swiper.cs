@@ -113,7 +113,7 @@ public class Swiper : Swipee {
 
         this.Preferences = new Preference[] {
             allOptions[firstIndex],
-        allOptions[secondIndex]
+            allOptions[secondIndex]
         }; 
     }
 }

@@ -17,7 +17,6 @@ public class Init : MonoBehaviour
 
     public void UpdateSwipeScreen(Swipee swipee)
     {
-        Debug.Log("Maybe problem here");
         textFields[0].text = swipee.Name;
         textFields[1].text = "Age: " + swipee.Age.ToString();
         textFields[2].text = "Height: " + swipee.Height;

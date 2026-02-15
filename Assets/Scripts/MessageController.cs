@@ -66,7 +66,7 @@ public class MessageController : MonoBehaviour
         },
         // Northern Soul
         {
-            "Ayup love. How’d you take your brew?",
+            "Ayup. How’d you take your brew?",
             "What are you having for your tea tonight then?",
             "Where abouts up north are ya from?",
             "That's reyt good",
@@ -138,7 +138,17 @@ public class MessageController : MonoBehaviour
     {
         string text = EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TMP_Text>().text;
         createNewMessage(true, text);
-        StartCoroutine(RespondToMessage(text));
+        int optionIndex = -1;
+        for (int j = 0; j < playerDialogue.GetLength(1);j++) 
+        {
+            if (playerDialogue[personalityType,j].Trim() == text.Trim())
+            {
+                optionIndex = j;
+                break;
+            }
+        }
+
+        StartCoroutine(RespondToMessage(text, optionIndex));
     }
 
     public void startConversation(string firstMessageText)
@@ -146,21 +156,31 @@ public class MessageController : MonoBehaviour
         createNewMessage(false, firstMessageText);
     }
 
-    IEnumerator RespondToMessage(string userMessage)
+    IEnumerator RespondToMessage(string userMessage, int optionIndex)
     {
-        float startTime = Time.time;
-        yield return new WaitForSeconds(((float)UnityEngine.Random.Range(8, 21)) / 10f);
+        if (messageCounter < 3)
+        {
+            messageCounter++;
 
-        // THE BELOW LINE IS INCOMPLETE, NEED TO
-        // IMPLEMENT LOGIC FOR CHOSING BETWEEN GOOD NEUTRAL OR OK ANSWERS
-        createNewMessage(false, characterDialogue[personalityType, 1]);
+            float startTime = Time.time;
+            yield return new WaitForSeconds(((float)UnityEngine.Random.Range(8, 21)) / 10f);
 
-        startTime = Time.time;
-        yield return new WaitForSeconds(((float)UnityEngine.Random.Range(8, 21)) / 10f);
-        createNewMessage(false, characterDialogue[personalityType, messageCounter]);
-        messageCounter++;
+            int indexOfResponse = 3 + (optionIndex % 3);
+            Debug.Log(indexOfResponse);
+            createNewMessage(false, characterDialogue[personalityType, indexOfResponse]);
 
-        updateButtons();
+            startTime = Time.time;
+            yield return new WaitForSeconds(((float)UnityEngine.Random.Range(8, 21)) / 10f);
+            createNewMessage(false, characterDialogue[personalityType, messageCounter]);
+
+            updateButtons();
+        }
+        else
+        {
+            createNewMessage(false, characterDialogue[personalityType, 7]);
+            messageCounter = 0;
+            updateButtons();
+        }
     }
 
     private void createNewMessage(bool userMessage, string messageText)
